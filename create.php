@@ -1,8 +1,14 @@
 <?php
+//debug stuff
+    ini_set('display_errors', 1);
+    ini_set('log_errors', 1);
+    ini_set('error_log', dirname(__FILE__) . '/error_log.txt');
+    error_reporting(E_ALL);
+    define("ROOT",dirname(__FILE__));
 require ('yh.class.php');
 $yh= new yh;
 if (!empty($_POST['email'])){
-    $yh->createuser($_POST['email'],$_POST['pass'],$_POST['country'],$_POST['name']);
+    echo $yh->createuser($_POST['email'],$_POST['pass'],$_POST['country'],$_POST['name']);
     echo 'Done<br>';
     echo 'ID: ';
     echo $yh->clientidbyemail($_POST['email']);

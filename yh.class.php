@@ -7,8 +7,8 @@ CC-BY Maarten Eyskens
 */
 class yh{
     //let's do what youhosting hasn't done for years, serious coding
-    private $login='YHLOGIN';
-    private $pass='YHPASS';
+    private $login='LOGIN';
+    private $pass='PASS';
     
     private function GetBetween($content,$start,$end){
         $r = explode($start, $content);
@@ -58,7 +58,7 @@ class yh{
     }
     public function clientidbyemail($email){
         $email=urlencode($email);
-        $id=$this->GetBetween($this->connect("http://www.youhosting.com/en/client/manage?email=meyskens%40me.com&submit=Search"),'<a class="" href="/en/client/view/id/','">');
+        $id=$this->GetBetween($this->connect("http://www.youhosting.com/en/client/manage?email=$email&submit=Search"),'<a class="" href="/en/client/view/id/','">');
         return $id;
     }
     
@@ -83,10 +83,7 @@ class yh{
     //this is something special
      public function createuser($email,$pass,$country,$fname){
         $tmp_fname = tempnam("/tmp", "COOKIE");
-        $email= urlencode($email);
-        $pass= urlencode($pass);
-        $fname= urlencode($fname);
-        $country= urlencode($country);
+        
          //hack the security code
         $file=file_get_contents("http://www.youhosting.com/en/auth");
         $output=$this->GetBetween($file,"document.write(",");");
@@ -111,8 +108,8 @@ class yh{
 	    $curl_handle = curl_init ('http://www.youhosting.com/en/client/add');
 	    curl_setopt ($curl_handle, CURLOPT_COOKIEFILE, $tmp_fname);
         curl_setopt ($curl_handle, CURLOPT_RETURNTRANSFER, true);
-        $post_array = array('email' => $email, 'first_name'=>$fname, 'country'=> $country, 'password' => $pass, 'password_confirm'=>$pass, 'send_email'=>'1','submit'=>'Save', );
-	    curl_setopt ($curl_handle, CURLOPT_RETURNTRANSFER, $post_array);
+        $post_array = array('email'=>$email, 'first_name'=>$fname, 'country'=> $country, 'password' => $pass, 'password_confirm'=>$pass, 'send_email'=>'1','submit'=>'Save');
+	    curl_setopt ($curl_handle, CURLOPT_POSTFIELDS, $post_array);
         $output = curl_exec ($curl_handle);
         return $output;
     } 
