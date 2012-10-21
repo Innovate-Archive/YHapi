@@ -8,7 +8,7 @@
 require ('yh.class.php');
 $yh= new yh;
 if (!empty($_POST['email'])){
-    echo $yh->createuser($_POST['email'],$_POST['pass'],$_POST['country'],$_POST['name']);
+    $yh->createuser($_POST['email'],$_POST['pass'],$_POST['country'],$_POST['name']);
     echo 'Done<br>';
     echo 'ID: ';
     echo $yh->clientidbyemail($_POST['email']);
