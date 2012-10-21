@@ -1,0 +1,2 @@
+[21-Oct-2012 06:04:10] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING, expecting ')' in /var/lib/stickshift/621bfada4a0f45dfa475489eb76fcb7c/app-root/data/304157/yh.class.php on line 103
+[21-Oct-2012 06:28:01] PHP Fatal error:  Using $this when not in object context in /var/lib/stickshift/621bfada4a0f45dfa475489eb76fcb7c/app-root/data/304157/key.php on line 8
